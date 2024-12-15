@@ -1,10 +1,17 @@
+import 'package:fitness_app/screens/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart'; // Import kIsWeb
+// import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
 import 'screens/sign_in_screen.dart';
 import 'screens/home_screen.dart';
-import 'screens/sign_up_screen.dart'; // Import the SignUpScreen
+import 'screens/sign_up_screen.dart';
+import 'screens/workout.dart';
+import 'screens/nutrition.dart';
+import 'screens/progress.dart';
+import 'screens/map.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +31,8 @@ void main() async {
       );
     } else {
       await Firebase.initializeApp();
+      // FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+
     }
   }
 
@@ -55,11 +64,15 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: '/signin', // Set initial route
+      initialRoute: '/home', // Set initial route
       routes: {
         '/signin': (context) => SignInScreen(),
         '/home': (context) => HomeScreen(),
-         '/signup': (context) => SignUpScreen(), 
+        '/signup': (context) => SignUpScreen(), 
+        '/workout': (context) => WorkoutScreen(),
+        '/nutrition': (context) => NutritionScreen(),
+        '/progress': (context) => ProgressTrackingScreen(),
+        '/map': (context) => MapTilerCustomMap(),
       },
     );
   }
